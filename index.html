@@ -30,12 +30,12 @@ input{user-select:text}
 .li{font-size:14px;color:var(--fg);opacity:.9;padding:2px 0}
 .gt{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .gt .b{padding:20px 6px;font-size:15px}
-h1{font:700 20px Orbitron,sans-serif;letter-spacing:.3em;margin:30px 0 0;color:var(--ac);text-shadow:0 0 18px var(--ac)}
-#hudw{position:relative;width:min(70vw,300px,34vh);aspect-ratio:1;margin-top:14px;transform-style:preserve-3d;perspective:700px;animation:bob 5s ease-in-out infinite}
-#hudw i{position:absolute;inset:-14%;border-radius:50%;border:1px dashed color-mix(in srgb,var(--ac) 70%,transparent);pointer-events:none;box-shadow:0 0 14px color-mix(in srgb,var(--ac) 30%,transparent)}
+h1{font:700 20px Orbitron,sans-serif;letter-spacing:.3em;margin:20px 0 0;color:var(--ac);text-shadow:0 0 18px var(--ac)}
+#hudw{position:relative;width:min(62vw,260px,29vh);aspect-ratio:1;margin-top:10px;transform-style:preserve-3d;perspective:700px;animation:bob 5s ease-in-out infinite}
+#hudw i{position:absolute;inset:-10%;border-radius:50%;border:1px dashed color-mix(in srgb,var(--ac) 70%,transparent);pointer-events:none;box-shadow:0 0 14px color-mix(in srgb,var(--ac) 30%,transparent)}
 #hudw i:nth-child(1){animation:rA 14s linear infinite}
-#hudw i:nth-child(2){inset:-24%;border:1px solid color-mix(in srgb,var(--ac2) 55%,transparent);border-left-color:transparent;border-bottom-color:transparent;animation:rB 9s linear infinite}
-#hudw i:nth-child(3){inset:-6%;border:2px solid color-mix(in srgb,var(--ac) 50%,transparent);border-top-color:transparent;border-right-color:transparent;animation:rC 6s linear infinite}
+#hudw i:nth-child(2){inset:-17%;border:1px solid color-mix(in srgb,var(--ac2) 55%,transparent);border-left-color:transparent;border-bottom-color:transparent;animation:rB 9s linear infinite}
+#hudw i:nth-child(3){inset:-4%;border:2px solid color-mix(in srgb,var(--ac) 50%,transparent);border-top-color:transparent;border-right-color:transparent;animation:rC 6s linear infinite}
 @keyframes rA{from{transform:rotateX(72deg) rotateZ(0)}to{transform:rotateX(72deg) rotateZ(360deg)}}
 @keyframes rB{from{transform:rotateY(68deg) rotateZ(0)}to{transform:rotateY(68deg) rotateZ(-360deg)}}
 @keyframes rC{from{transform:rotateZ(0)}to{transform:rotateZ(360deg)}}
@@ -385,7 +385,7 @@ function detectEmo(q){const t=q.toLowerCase();
  else if(/(हाहा|हा हा|😂|😄|मज़ा|मजा|शानदार|बढ़िया|ज़बरदस्त|जबरदस्त|धन्यवाद|शुक्रिया|थैंक|खुश|मस्त)/.test(t))setEmotion('joy');
  else if(/(वाह|अरे|क्या बात|सच में|कमाल)/.test(t))setEmotion('surprise')}
 let amp=.07,spd=.5,ph=0,col=['#27d3ff','#ff9d2e'],fr=0,last=performance.now();
-const N=1500,PT=[];
+const N=1050,PT=[];
 for(let i=0;i<N;i++){const y=1-2*(i+.5)/N,r=Math.sqrt(1-y*y),a=i*2.399963;const px=Math.cos(a)*r,pz=Math.sin(a)*r,T=pz>0&&((y<-.38&&y>-.6&&Math.abs(px)<.38)||(Math.abs(px)<.09&&y<.42&&y>=-.38))?1:0;PT.push([px,y,pz,i%7===0?1:0,Math.random()*6.28,T])}
 /* ===== HOLO12: जार्विस-स्टाइल डॉट HUD (सिर्फ़ बिंदुओं से) ===== */
 var JL={x:0,y:0,tx:0,ty:0},JG={t:0,u:0},fvStm=null,faceN=0;
@@ -410,7 +410,7 @@ function drawJ(now,s,T,R,c,W){
     for(let i=0;i<n;i++){const a=i/n*6.283+dir*sp*(.9-k*.08);D(ox+Math.cos(a)*rad+J(),oy+Math.sin(a)*rad*sq+J(),1.5+(i%5===0?1:0),.45+.45*Math.sin(t*2.4+k+i*.3)**2+beat*.3,i%5===0?fg:cl)}}
   D(ox,oy,5+beat*4,1,fg);D(ox,oy,9+beat*7+Math.sin(t*3)*1.5,.25,cl);
   // छुपा हुआ T (हल्की चमक)
-  {const ta=.3+.25*Math.sin(t*1.7);for(let i=-3;i<=3;i++)D(ox+i*R*.045,oy-R*.2,1.3,ta,fg);for(let i=0;i<=5;i++)D(ox,oy-R*.2+i*R*.075,1.3,ta,fg)}
+  {const ta=.78+.12*Math.sin(t*1.7);for(let i=-4;i<=4;i++)D(ox+i*R*.052,oy-R*.22,2.0,ta,fg);for(let i=0;i<=7;i++)D(ox,oy-R*.22+i*R*.063,2.0,ta,fg)}
   // 2) भीतरी बिंदु-छल्ला
   {const n=Math.round(96*q),rad=R*.66*(1+beat*.05);for(let i=0;i<n;i++){const a=i/n*6.283+sp*.5,w=Math.min(amp*ep.amp,.12)*R*.35*Math.sin(a*5+sp*2),r2=rad+w;D(c+JL.x*R*.12+Math.cos(a)*r2+J(),c+JL.y*R*.1+sag*R*.15+Math.sin(a)*r2*sq+J(),i%8===0?2.4:1.4,i%8===0?.95:.5,i%8===0?fg:cl)}}
   // 3) कटे हुए चाप (घूमते खंड)
@@ -440,7 +440,7 @@ var LITE=0;function frame(now){
   amp+=(ta*(RM?.3:1)-amp)*.08;spd+=(ts-spd)*.08;ph+=dt*spd*ep.spd;
   if(fr++%30===0){const c=getComputedStyle(document.documentElement);col=[ovr||c.getPropertyValue('--ac').trim(),c.getPropertyValue('--ac2').trim()];fg=c.getPropertyValue('--fg').trim()}
   if(T.c)col[0]=T.c;
-  const W=cv.width,R=W*.27*ep.sc*(1+hbv),c=W/2;cx.clearRect(0,0,W,W);
+  const W=cv.width,R=W*.235*Math.max(.88,Math.min(1.12,ep.sc))*(1+Math.min(.035,hbv)),c=W/2;cx.clearRect(0,0,W,W);
   if(STY!=='jarvis'&&STF[STY]){STF[STY](now,s,T,R,c,W);requestAnimationFrame(frame);return}
   if(mem.jv!==0){drawJ(now,s,T,R,c,W);requestAnimationFrame(frame);return}
   const beat=s==='speak'?Math.sin(now/110)*.05+(window.__pu||0)*.05:0;if(s==='speak'&&Math.random()<.07)window.__pu=.8;
@@ -1355,7 +1355,10 @@ async function genImage(raw){
   raw=String(raw||'').trim();if(!raw){return}
   if(!mem.sdurl&&!online()){say('तस्वीर बनाने के लिए इंटरनेट चाहिए, या अपना Stable Diffusion सर्वर जोड़िए।');return}
   setS('think','DRAWING');say('ठीक है, तस्वीर बना रहा हूँ।');
-  let p=await toEn(raw);if(mem.isty&&ISTY[mem.isty])p+=', '+ISTY[mem.isty][1];
+  const dotMode=/(डॉटेड|डॉट्स|बिंदु|कण.?कण|कणों|particle|pointillist|dot art)/i.test(raw);
+  let p=await toEn(raw);
+  if(dotMode)p+=', pointillist particle-art, recognizable subject formed ONLY from many tiny glowing cyan, white and ice-blue dots, visible individual particles, dark clean background, no solid filled surfaces, no extra objects, no text';
+  if(mem.isty&&ISTY[mem.isty])p+=', '+ISTY[mem.isty][1];
   try{
     if(mem.sdurl){try{const src=await sdGen(p);idleLbl();showImg(src,raw,'sd');say('तस्वीर तैयार है, अपने सर्वर से बनी।');return}catch(e){if(!online()){idleLbl();say('SD सर्वर तक पहुँच नहीं पाया और नेट भी नहीं है। सर्वर चालू है? लिंक सही है?');return}note('SD सर्वर नहीं मिला, इसलिए ऑनलाइन से बना रहा हूँ।')}}
     const src='https://image.pollinations.ai/prompt/'+encodeURIComponent(p)+'?width=768&height=768&nologo=true&seed='+((Math.random()*1e6)|0);
